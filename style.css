@@ -1,6 +1,12 @@
 /* Genel ayarlar */
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Open Sans',sans-serif;background:#fff;color:#333;scroll-behavior:smooth;}
+body{
+    font-family:'Open Sans',sans-serif;
+    background:#fff;
+    color:#333;
+    scroll-behavior:smooth;
+    overflow-x: hidden; /* Yan kaymayı önler */
+}
 
 /* NAVBAR */
 .navbar{
@@ -9,12 +15,13 @@ body{font-family:'Open Sans',sans-serif;background:#fff;color:#333;scroll-behavi
   display:flex;align-items:center;
 }
 .navbar .container{
-  max-width:1200px;margin:auto;padding:0 40px;
+  max-width:1200px;margin:auto;padding:0 20px;
   display:flex;justify-content:space-between;align-items:center;
+  width: 100%;
 }
 .logo img{height:85px;cursor:pointer;transition:0.3s;margin-left:-10px;}
 .logo img:hover{transform:scale(1.1);filter:drop-shadow(0 0 8px rgba(0,119,182,0.6));}
-.nav-links{list-style:none;display:flex;gap:25px;}
+.nav-links{list-style:none;display:flex;gap:25px; flex-wrap: wrap; justify-content: center;}
 .nav-link{
   color:#555;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:4px;transition:0.3s;
 }
@@ -34,21 +41,21 @@ header::before{
   opacity:0;transition:opacity 1.5s ease-in-out;
 }
 .fade-slide.active{opacity:1;}
-.header-content{position:relative;z-index:2;max-width:800px;}
-.header-content h1{font-family:'Playfair Display',serif;font-size:3.5rem;margin-bottom:20px;}
+.header-content{position:relative;z-index:2;max-width:800px; padding: 0 20px;}
+.header-content h1{font-family:'Playfair Display',serif;font-size: clamp(2rem, 8vw, 3.5rem);margin-bottom:20px;}
 .header-content p{font-size:1.2rem;margin-bottom:30px;}
 .btn-book{
   padding:12px 30px;background:#fff;color:#333;font-weight:bold;border-radius:25px;
-  text-decoration:none;transition:0.3s;
+  text-decoration:none;transition:0.3s; display: inline-block;
 }
 .btn-book:hover{background:#e2e2e2;}
 
-/* SECTIONS (diğer bölümler aynı kalır) */
-section{padding:80px 20px;max-width:1200px;margin:auto;}
-.section-flex{display:flex;flex-wrap:wrap;align-items:center;gap:40px;}
-.section-text{flex:1;}
+/* SECTIONS */
+section{padding:80px 20px;max-width:1200px;margin:auto; width: 100%;}
+.section-flex{display:flex;flex-wrap:wrap;align-items:center;gap:40px; width: 100%;}
+.section-text{flex:1; min-width: 300px;}
 .section-text h2{font-family:'Playfair Display',serif;font-size:2.3rem;color:#0077b6;margin-bottom:20px;}
-.section-flex img{max-width:500px;width:100%;border-radius:10px;transition:.3s;}
+.section-flex img{max-width:500px;width:100%;height: auto;border-radius:10px;transition:.3s;}
 .section-flex img:hover{transform:scale(1.03);}
 
 /* ROOMS */
@@ -59,7 +66,7 @@ section{padding:80px 20px;max-width:1200px;margin:auto;}
 
 /* FOOTER ve FORM */
 footer{margin-top:40px;background:#0d3b66;color:#fff;text-align:center;padding:18px 10px;}
-.reservation-form{max-width:500px;margin-top:20px;}
+.reservation-form{max-width:500px;margin:20px auto;}
 .form-group{margin-bottom:15px;}
 .form-group label{font-weight:600;color:#0077b6;display:block;margin-bottom:5px;}
 .form-group input,.form-group select{width:100%;padding:10px;border:1px solid #ccc;border-radius:6px;}
@@ -70,9 +77,24 @@ footer{margin-top:40px;background:#0d3b66;color:#fff;text-align:center;padding:1
 section,header{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out;}
 .visible{opacity:1;transform:translateY(0);}
 
-/* RESPONSIVE */
+/* RESPONSIVE - GELİŞTİRİLDİ */
 @media(max-width:768px){
-  .section-flex{flex-direction:column;text-align:center;}
-  .logo img{height:60px;margin-left:-5px;}
+  .navbar{height: auto; padding: 10px 0;}
+  .navbar .container{flex-direction: column; gap: 10px; padding: 0 10px;}
+  .nav-links{gap: 10px; width: 100%; justify-content: center;}
+  .nav-link{font-size: 0.8rem; padding: 5px 8px;}
+  
+  .section-flex{flex-direction:column !important; text-align:center;}
+  .section-text{min-width: 100%;}
+  .logo img{height:60px;margin-left:0;}
   .header-content h1{font-size:2.4rem;}
+  
+  header{height: 80vh;}
+  iframe{height: 200px;}
+}
+
+@media(max-width:480px){
+    .nav-link{font-size: 0.7rem; padding: 4px;}
+    .header-content h1{font-size: 1.8rem;}
+    section{padding: 40px 15px;}
 }
